@@ -4,7 +4,7 @@ import { Project, SocialLinks } from './models';
 export const SOCIAL: SocialLinks = {
   github: 'https://github.com/BrunoCOliveira37',
   linkedin: 'https://www.linkedin.com/in/bruno-chaves-de-oliveira-775561264/',
-  cvUrl: '/assets/cv.pdf'
+  cvUrl: 'assets/pdf/cv.pdf'
 };
 
 export const PROJECTS: Project[] = [
