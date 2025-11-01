@@ -1,0 +1,2 @@
+/* src/app/components/footer/footer.component.css */
+.foot{display:flex;align-items:center;justify-content:space-between;color:var(--muted)}

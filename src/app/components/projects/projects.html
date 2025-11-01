@@ -1,0 +1,43 @@
+<!-- src/app/components/projects/projects.component.html -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="header-row">
+      <h2>Projetos</h2>
+      <div class="controls">
+        <button class="pill" (click)="prev()">◀</button>
+        <span class="muted">{{index()+1}}/{{projects().length}}</span>
+        <button class="pill" (click)="next()">▶</button>
+      </div>
+    </div>
+
+    <div class="carousel">
+      <article class="slide card" *ngFor="let p of projects(); let i = index"
+               [class.active]="i === index()"
+               [style.transform]="transformFor(i)">
+        <div class="thumb" *ngIf="p.image; else placeholder">
+          <img [src]="p.image" [alt]="p.title">
+        </div>
+        <ng-template #placeholder>
+          <div class="thumb placeholder">👩‍💻</div>
+        </ng-template>
+
+        <div class="slide__body">
+          <h3>{{p.title}}</h3>
+          <p class="muted">{{p.summary}}</p>
+          <ul class="tags">
+            <li *ngFor="let t of p.tech">{{t}}</li>
+          </ul>
+          <div class="links">
+            <a *ngIf="p.repoUrl" class="btn btn--outline" [href]="p.repoUrl" target="_blank" rel="noopener">GitHub</a>
+            <a *ngIf="p.downloadUrl" class="btn" [href]="p.downloadUrl" download>Download</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="dots">
+      <button *ngFor="let _ of projects(); let i = index"
+              class="dot" [class.on]="i===index()" (click)="go(i)" aria-label="Ir para slide {{i+1}}"></button>
+    </div>
+  </div>
+</section>

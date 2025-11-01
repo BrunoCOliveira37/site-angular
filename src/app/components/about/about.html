@@ -1,0 +1,17 @@
+<section id="about" class="section">
+  <div class="container grid-2">
+    <div class="card">
+      <h2>Sobre mim</h2>
+      <p>{{bio1}}</p>
+      <p>{{bio2}}</p>
+    </div>
+    <div class="card alt">
+      <h3>Habilidades</h3>
+      <ul class="tags">
+        <li *ngFor="let t of skills">{{t}}</li>
+      </ul>
+      <h3>Contato</h3>
+      <p><a [href]="'mailto:'+email">{{email}}</a></p>
+    </div>
+  </div>
+</section>

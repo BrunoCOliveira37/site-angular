@@ -1,0 +1,9 @@
+/* src/app/components/hero/hero.component.css */
+.hero{
+  padding:96px 0 64px;
+  background:
+    radial-gradient(600px 300px at 80% -30%, rgba(124,92,255,.25), transparent),
+    radial-gradient(500px 400px at -10% 0%, rgba(34,193,195,.15), transparent);
+}
+.lead{font-size:1.125rem;color:var(--muted)}
+.hero__cta{display:flex;gap:12px;margin-top:18px}
