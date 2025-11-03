@@ -7,3 +7,18 @@
 }
 .lead{font-size:1.125rem;color:var(--muted)}
 .hero__cta{display:flex;gap:12px;margin-top:18px}
+.hero__content {
+  display: flex;
+  align-items: center;   /* alinha a foto e o texto verticalmente */
+  gap: 24px;             /* espaço entre a foto e o texto */
+}
+
+.hero__text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* deixa a imagem menor e alinhada com o estilo */
+app-photo {
+  flex-shrink: 0; /* evita que a imagem deforme */
+}

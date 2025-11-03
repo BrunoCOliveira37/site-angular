@@ -1,11 +1,12 @@
 // src/app/components/hero/hero.component.ts
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Photo } from "../photo/photo";
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Photo],
   templateUrl: './hero.html',
   styleUrls: ['./hero.css']
 })
