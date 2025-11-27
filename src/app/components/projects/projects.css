@@ -1,17 +1,71 @@
 /* src/app/components/projects/projects.css */
+
+/* Cabeçalho e controles mantidos */
 .header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .controls{display:flex;align-items:center;gap:10px}
 .pill{border:1px solid #2a2f3a;background:#161a21;padding:6px 10px;border-radius:999px;color:#e8ebf2}
-.carousel{position:relative;overflow:hidden;height:360px}
-.slide{position:absolute;inset:0;display:grid;grid-template-columns:300px 1fr;gap:18px;opacity:0;transition:transform .45s ease,opacity .45s ease}
-.slide.active{opacity:1}
-.thumb{background:#101318;border:1px solid #242a34;border-radius:12px;display:flex;align-items:center;justify-content:center}
-.thumb img{max-width:100%;border-radius:10px}
+
+/* O carrossel vira “moldura” dos slides */
+.carousel{
+  position:relative;
+  overflow:hidden;
+  min-height:360px;                 /* usa min-height p/ não “cortar” conteúdo maior */
+}
+
+/* Cada slide ocupa a moldura inteira e não quebra */
+.slide{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:grid;
+  grid-template-columns: clamp(220px, 30vw, 320px) 1fr; /* em vez de 300px fixos */
+  gap:18px;
+  opacity:0;
+  transition: transform .45s ease, opacity .45s ease;
+  align-content:start;               /* não estica vertical à força */
+  min-width:0;                       /* permite o texto encolher sem empurrar coluna pra baixo */
+  will-change: transform;
+}
+.slide.active{ opacity:1; }
+.slide:not(.active){ pointer-events:none; } /* evita cliques no slide “ao lado” */
+
+/* Thumb com proporção estável */
+.thumb{
+  background:#101318;border:1px solid #242a34;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  min-width:0;
+}
+.thumb img{
+  width:100%;height:100%;object-fit:cover;border-radius:10px;
+}
+/* Se preferir uma altura fixa elegante, descomente:
+.thumb{ aspect-ratio: 16/10; }
+*/
+
 .thumb.placeholder{font-size:64px}
-.slide__body{display:flex;flex-direction:column;gap:10px}
+
+.slide__body{
+  display:flex;flex-direction:column;gap:10px;
+  min-width:0;            /* previne quebra da segunda coluna */
+  overflow:auto;          /* se o texto for muito alto, rola dentro do slide */
+}
+
 .dots{display:flex;gap:8px;justify-content:center;margin-top:14px}
 .dot{width:10px;height:10px;border-radius:50%;border:1px solid #3a4150;background:#141821}
 .dot.on{background:linear-gradient(135deg,var(--brand),var(--brand-2));border-color:transparent}
+
 .tags{display:flex;flex-wrap:wrap;gap:8px;padding-left:0;list-style:none}
 .tags li{padding:6px 10px;border-radius:999px;background:#1b1f26;border:1px solid #272b35;color:#c6cfdb;font-size:.9rem}
-@media (max-width:880px){.carousel{height:auto}.slide{position:relative;grid-template-columns:1fr}}
+
+/* ===== MOBILE ===== */
+@media (max-width:880px){
+  .carousel{ min-height:auto; position:relative;}
+  .slide{
+    position:relative;      /* empilha */
+    grid-template-columns: 1fr;
+    height:auto;
+  }
+  .thumb{ aspect-ratio: 16/9; }      /* thumb agradável no mobile */
+}

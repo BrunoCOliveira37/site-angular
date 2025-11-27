@@ -1,24 +1,45 @@
 /* src/app/components/hero/hero.component.css */
-.hero{
-  padding:96px 0 64px;
+.hero {
+  padding: clamp(48px, 8vw, 96px) 0 clamp(32px, 6vw, 64px);
   background:
     radial-gradient(600px 300px at 80% -30%, rgba(124,92,255,.25), transparent),
     radial-gradient(500px 400px at -10% 0%, rgba(34,193,195,.15), transparent);
 }
-.lead{font-size:1.125rem;color:var(--muted)}
-.hero__cta{display:flex;gap:12px;margin-top:18px}
+
 .hero__content {
   display: flex;
-  align-items: center;   /* alinha a foto e o texto verticalmente */
-  gap: 24px;             /* espaço entre a foto e o texto */
+  align-items: center;
+  gap: clamp(16px, 4vw, 32px);
+  flex-wrap: wrap;          /* evita estourar em telas menores */
 }
 
 .hero__text {
-  display: flex;
-  flex-direction: column;
+  flex: 1 1 320px;          /* dá espaço para encolher sem quebrar */
+  min-width: 0;             /* permite o texto encolher corretamente */
 }
 
-/* deixa a imagem menor e alinhada com o estilo */
+.hero__cta {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;          /* botões quebram linha no mobile */
+}
+
+/* tamanho da “caixa” da foto quando usada dentro do hero */
 app-photo {
-  flex-shrink: 0; /* evita que a imagem deforme */
+  flex: 0 0 auto;
+  display: block;
+  width: clamp(120px, 32vw, 220px); /* responsivo */
+  aspect-ratio: 1 / 1;              /* torna quadrado */
+  border-radius: 50%;               /* círculo */
+  overflow: hidden;                 /* recorta a imagem */
+}
+
+/* Mobile: empilha e centraliza */
+@media (max-width: 768px) {
+  .hero__content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero__cta { justify-content: center; }
 }

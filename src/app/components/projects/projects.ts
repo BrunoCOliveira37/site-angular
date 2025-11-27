@@ -18,5 +18,5 @@ export class Projects{
   next(){ this.index.set((this.index()+1) % this.total()); }
   prev(){ this.index.set((this.index()-1+this.total()) % this.total()); }
   go(i:number){ this.index.set(i); }
-  transformFor(i:number){ const off = i - this.index(); return `translateX(${off*100}%)`; }
+  transformFor(i:number){ const off = (i - this.index())*100; return `translateX(${off}%)`; }
 }
